@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- LIGHT MODE ---- */
+:root {
+  --bg: #ffffff;
+  --bg-surface: #f4f4f5;
+  --border: #e4e4e7;
+  --primary: #09090b;
+  --secondary: #71717a;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+}
+
+/* ---- DARK MODE ---- */
+.dark {
+  --bg: #09090b;
+  --bg-surface: #111113;
+  --border: #27272a;
+  --primary: #fafafa;
+  --secondary: #71717a;
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+}
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg);
+    color: var(--primary);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  ::selection { background: var(--accent); color: #fff; }
+}
+
+@layer utilities {
+  .bg-bg { background-color: var(--bg); }
+  .bg-surface { background-color: var(--bg-surface); }
+  .border-border { border-color: var(--border); }
+  .text-primary { color: var(--primary); }
+  .text-secondary { color: var(--secondary); }
+  .text-accent { color: var(--accent); }
+  .bg-accent { background-color: var(--accent); }
+  .border-accent { border-color: var(--accent); }
+
+  .card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .card-hover:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), 0 4px 16px rgba(99,102,241,0.08);
+    transform: translateY(-1px);
+  }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px; border-radius: 999px;
+    font-size: 13px; font-weight: 500;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border);
+    color: var(--secondary);
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 10px;
+    background-color: var(--accent); color: white;
+    font-size: 14px; font-weight: 500;
+    transition: opacity 0.15s, transform 0.1s;
+    cursor: pointer; border: none;
+  }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 10px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border); color: var(--primary);
+    font-size: 14px; font-weight: 500;
+    transition: border-color 0.15s; cursor: pointer;
+  }
+  .btn-secondary:hover { border-color: var(--accent); }
+
+  .input {
+    width: 100%; padding: 10px 14px; border-radius: 10px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border); color: var(--primary);
+    font-size: 14px; outline: none; transition: border-color 0.15s;
+  }
+  .input:focus { border-color: var(--accent); }
+  .input::placeholder { color: var(--secondary); }
+
+  .section { padding: 80px 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.4s ease forwards; }
